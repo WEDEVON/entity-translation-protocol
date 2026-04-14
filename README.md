@@ -5,7 +5,7 @@
 [![Prompts](https://img.shields.io/badge/prompts-agent_ready-8250df)](./prompts/)
 [![Manifest](https://img.shields.io/badge/manifest-machine_readable-1f883d)](./prompts/prompt-manifest.json)
 [![Schema](https://img.shields.io/badge/schema-json-0ea5e9)](./prompts/schema.json)
-[![License Placeholder](https://img.shields.io/badge/license-placeholder-f59e0b)](./LICENSE.md)
+[![License](https://img.shields.io/badge/license-MIT-f59e0b)](./LICENSE.md)
 
 `translate_process/` is an open-source-ready template for building translation systems that are:
 
@@ -62,11 +62,9 @@ This repository starts with those operational requirements instead of discoverin
 ```text
 translate_process/
   README.md
-  CHANGELOG.md
   CONTRIBUTING.md
   LICENSE.md
   ROADMAP.md
-  VERSIONING.md
   docs/
   protocol/
   examples/
@@ -117,20 +115,10 @@ See:
 
 See [ROADMAP.md](./ROADMAP.md) for the current planned improvements.
 
-## Versioning
-
-See [VERSIONING.md](./VERSIONING.md) for repository versioning rules and release expectations.
-
-## Changelog
-
-See [CHANGELOG.md](./CHANGELOG.md) for notable repository changes.
-
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution expectations and repository conventions.
 
 ## License
-
-This folder currently includes a license placeholder. Replace it with the final license text before publishing publicly.
 
 See [LICENSE.md](./LICENSE.md).
