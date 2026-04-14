@@ -1,0 +1,185 @@
+{
+  "manifest_version": "1.0.0",
+  "package_version": "0.1.0",
+  "package_name": "translate_process",
+  "description": "Machine-readable prompt manifest for the translate_process workflow.",
+  "prompt_sequence": [
+    "00-system-goal",
+    "10-source-priority",
+    "20-audit-round",
+    "30-manual-map-round",
+    "40-promotion-round",
+    "50-review-round",
+    "60-release-round"
+  ],
+  "prompts": [
+    {
+      "id": "00-system-goal",
+      "path": "prompts/00-system-goal.md",
+      "title": "System Goal Prompt",
+      "stage": "setup",
+      "required_inputs": [
+        "repository_structure",
+        "source_priority_policy",
+        "manual_map",
+        "generated_map",
+        "artifact_locations",
+        "backup_policy"
+      ],
+      "required_outputs": [
+        "translation_objective_summary",
+        "policy_acknowledgement",
+        "manual_generated_separation_acknowledgement",
+        "audit_backup_requirement_acknowledgement"
+      ],
+      "completion_criteria": [
+        "active policy acknowledged",
+        "workflow constraints acknowledged",
+        "output responsibilities acknowledged"
+      ]
+    },
+    {
+      "id": "10-source-priority",
+      "path": "prompts/10-source-priority.md",
+      "title": "Source Priority Prompt",
+      "stage": "policy",
+      "required_inputs": [
+        "target_locale",
+        "target_region",
+        "source_classes",
+        "editorial_constraints",
+        "fallback_policy"
+      ],
+      "required_outputs": [
+        "ordered_source_priority_list",
+        "target_locale_statement",
+        "regional_convention_statement",
+        "fallback_policy_statement",
+        "unresolved_source_ambiguity_note"
+      ],
+      "completion_criteria": [
+        "source priority order is explicit",
+        "priority order can guide review and promotion decisions"
+      ]
+    },
+    {
+      "id": "20-audit-round",
+      "path": "prompts/20-audit-round.md",
+      "title": "Audit Round Prompt",
+      "stage": "audit",
+      "required_inputs": [
+        "source_dataset",
+        "manual_map",
+        "generated_map",
+        "token_maps",
+        "normalization_rules",
+        "artifact_directory"
+      ],
+      "required_outputs": [
+        "entity_level_audit_table",
+        "audit_summary",
+        "prioritized_high_exposure_gap_list",
+        "parser_or_encoding_note"
+      ],
+      "completion_criteria": [
+        "detailed audit output exists",
+        "summary counts exist",
+        "next correction batch is actionable"
+      ]
+    },
+    {
+      "id": "30-manual-map-round",
+      "path": "prompts/30-manual-map-round.md",
+      "title": "Manual Map Round Prompt",
+      "stage": "manual_review",
+      "required_inputs": [
+        "latest_audit_output",
+        "latest_review_queue",
+        "source_priority_policy",
+        "current_manual_map"
+      ],
+      "required_outputs": [
+        "proposed_manual_map_additions",
+        "manual_placement_reasons",
+        "evidence_flags",
+        "non_manual_decisions"
+      ],
+      "completion_criteria": [
+        "manual additions are explicit",
+        "placement rationale is explicit"
+      ]
+    },
+    {
+      "id": "40-promotion-round",
+      "path": "prompts/40-promotion-round.md",
+      "title": "Promotion Round Prompt",
+      "stage": "promotion",
+      "required_inputs": [
+        "reviewed_audit_output",
+        "current_generated_map",
+        "current_manual_map",
+        "source_priority_policy",
+        "release_acceptance_rules"
+      ],
+      "required_outputs": [
+        "promotion_approval_list",
+        "promotion_rejection_list",
+        "generated_map_patch_block",
+        "promotion_risk_note"
+      ],
+      "completion_criteria": [
+        "promotion set is explicit",
+        "promotion set is reproducible",
+        "manual exceptions remain separate"
+      ]
+    },
+    {
+      "id": "50-review-round",
+      "path": "prompts/50-review-round.md",
+      "title": "Review Round Prompt",
+      "stage": "review",
+      "required_inputs": [
+        "latest_audit_output",
+        "latest_manual_changes",
+        "latest_generated_changes",
+        "review_queue",
+        "release_criteria"
+      ],
+      "required_outputs": [
+        "unresolved_ambiguity_list",
+        "risky_token_addition_list",
+        "remaining_fallback_list",
+        "classification_mismatch_list",
+        "next_round_recommendation"
+      ],
+      "completion_criteria": [
+        "unresolved risk is visible",
+        "operator can decide whether to iterate or release"
+      ]
+    },
+    {
+      "id": "60-release-round",
+      "path": "prompts/60-release-round.md",
+      "title": "Release Round Prompt",
+      "stage": "release",
+      "required_inputs": [
+        "latest_audit_summary",
+        "latest_audit_artifacts",
+        "release_criteria",
+        "backup_destination",
+        "release_note_template"
+      ],
+      "required_outputs": [
+        "audit_rerun_confirmation",
+        "acceptance_check_confirmation",
+        "backup_status",
+        "release_note_summary",
+        "unresolved_risk_summary"
+      ],
+      "completion_criteria": [
+        "valid audit state exists",
+        "recoverable backup state exists"
+      ]
+    }
+  ]
+}
